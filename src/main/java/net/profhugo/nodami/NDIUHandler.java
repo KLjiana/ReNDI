@@ -19,7 +19,6 @@ import java.util.UUID;
 
 @Mod.EventBusSubscriber
 public class NDIUHandler {
-	private static UUID debugUUID = new UUID(0L, 0L);
 
 	@SubscribeEvent(priority = EventPriority.LOW)
 	public static void onEntityHurt(LivingHurtEvent event) {
@@ -31,17 +30,6 @@ public class NDIUHandler {
 			DamageSource source = event.getSource();
 			Entity trueSource = source.getDirectEntity();
 			ResourceLocation trueSourceloc = trueSource != null ? EntityType.getKey(trueSource.getType()) : null;
-			if (NDIUConfig.MISC.debugMode && entity instanceof Player) {
-				String trueSourceName;
-				if (trueSource != null && trueSourceloc != null) {
-					trueSourceName = trueSourceloc.toString();
-				} else {
-					trueSourceName = "null";
-				}
-				String message = String.format("Type of damage received: %s\nAmount: %.3f\nTrue Source (mob id): %s\n",
-						source.getMsgId(), event.getAmount(), trueSourceName);
-				//entity.sendMessage(new TextComponent(message), debugUUID);
-			}
 			if (NDIUConfig.CORE.excludePlayers && entity instanceof Player) {
 				return;
 			}
@@ -51,7 +39,7 @@ public class NDIUHandler {
 			}
 
 			ResourceLocation loc = EntityType.getKey(entity.getType());
-			if (loc != null && NDIUConfig.EXCLUSIONS.dmgReceiveExcludedEntities.contains(loc.toString())) {
+			if (NDIUConfig.EXCLUSIONS.dmgReceiveExcludedEntities.contains(loc.toString())) {
 				return;
 			}
 
@@ -90,7 +78,7 @@ public class NDIUHandler {
 			if (str <= NDIUConfig.THRESHOLDS.knockbackCancelThreshold) {
 				Entity target = event.getTarget();
 				// Don't worry, it's only magic
-				if (target != null && target instanceof LivingEntity) {
+				if (target instanceof LivingEntity) {
 					((LivingEntity)target).swinging = true;
 				}
 
@@ -102,7 +90,7 @@ public class NDIUHandler {
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public static void onLivingKnockBack(LivingKnockBackEvent event) {
 		if (!event.isCanceled()) {
-			LivingEntity entity = (LivingEntity) event.getEntity();
+			LivingEntity entity = event.getEntity();
 			if (entity.swinging) {
 				event.setCanceled(true);
 				entity.swinging = false;
