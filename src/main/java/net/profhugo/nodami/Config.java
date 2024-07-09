@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class NDIUConfig {
+public class Config {
 	private static final ForgeConfigSpec.Builder BUILDER;
 	public static final Core CORE;
 	public static final Thresholds THRESHOLDS;
@@ -110,20 +110,20 @@ public class NDIUConfig {
 
 	@SubscribeEvent
 	public void onModConfigEvent(final ModConfigEvent configEvent) {
-		if (configEvent.getConfig().getSpec() == NDIUConfig.SPEC) {
-			NDIUConfig.cacheValues();
+		if (configEvent.getConfig().getSpec() == Config.SPEC) {
+			Config.cacheValues();
 		}
 	}
 
 	@SubscribeEvent
 	public void onLoad(final ModConfigEvent.Loading event) {
-		NDIUMod.LOGGER.info("Config loaded!");
-		NDIUConfig.cacheValues();
+		ReNDI.LOGGER.info("Config loaded!");
+		Config.cacheValues();
 	}
 
 	@SubscribeEvent
 	public void onReload(final ModConfigEvent.Reloading event) {
-		NDIUMod.LOGGER.info("Config reloaded!");
-		NDIUConfig.cacheValues();
+		ReNDI.LOGGER.info("Config reloaded!");
+		Config.cacheValues();
 	}
 }

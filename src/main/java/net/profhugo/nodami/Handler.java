@@ -15,10 +15,8 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import java.util.UUID;
-
 @Mod.EventBusSubscriber
-public class NDIUHandler {
+public class Handler {
 
 	@SubscribeEvent(priority = EventPriority.LOW)
 	public static void onEntityHurt(LivingHurtEvent event) {
@@ -30,30 +28,30 @@ public class NDIUHandler {
 			DamageSource source = event.getSource();
 			Entity trueSource = source.getDirectEntity();
 			ResourceLocation trueSourceloc = trueSource != null ? EntityType.getKey(trueSource.getType()) : null;
-			if (NDIUConfig.CORE.excludePlayers && entity instanceof Player) {
+			if (Config.CORE.excludePlayers && entity instanceof Player) {
 				return;
 			}
 
-			if (NDIUConfig.CORE.excludeAllMobs && !(entity instanceof Player)) {
+			if (Config.CORE.excludeAllMobs && !(entity instanceof Player)) {
 				return;
 			}
 
 			ResourceLocation loc = EntityType.getKey(entity.getType());
-			if (NDIUConfig.EXCLUSIONS.dmgReceiveExcludedEntities.contains(loc.toString())) {
+			if (Config.EXCLUSIONS.dmgReceiveExcludedEntities.contains(loc.toString())) {
 				return;
 			}
 
-			if (NDIUConfig.EXCLUSIONS.damageSrcWhitelist.contains(source.getMsgId())) {
+			if (Config.EXCLUSIONS.damageSrcWhitelist.contains(source.getMsgId())) {
 				return;
 			}
 
 			if (trueSource != null) {
-				if (NDIUConfig.EXCLUSIONS.attackExcludedEntities.contains(trueSourceloc.toString())) {
+				if (Config.EXCLUSIONS.attackExcludedEntities.contains(trueSourceloc.toString())) {
 					return;
 				}
 
 			}
-			entity.invulnerableTime = NDIUConfig.CORE.iFrameInterval;
+			entity.invulnerableTime = Config.CORE.iFrameInterval;
 		}
 	}
 
@@ -70,12 +68,12 @@ public class NDIUHandler {
 			}
 
 			float str = player.getAttackStrengthScale(0);
-			if (str <= NDIUConfig.THRESHOLDS.attackCancelThreshold) {
+			if (str <= Config.THRESHOLDS.attackCancelThreshold) {
 				event.setCanceled(true);
 				return;
 			}
 
-			if (str <= NDIUConfig.THRESHOLDS.knockbackCancelThreshold) {
+			if (str <= Config.THRESHOLDS.knockbackCancelThreshold) {
 				Entity target = event.getTarget();
 				// Don't worry, it's only magic
 				if (target instanceof LivingEntity) {

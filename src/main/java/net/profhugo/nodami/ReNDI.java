@@ -11,8 +11,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(NDIUMod.MODID)
-public class NDIUMod
+@Mod(ReNDI.MODID)
+public class ReNDI
 {
 	public static final String MODID = "rendi";
 
@@ -20,10 +20,10 @@ public class NDIUMod
 
 	public static IEventBus bus;
 
-	public NDIUMod()
+	public ReNDI()
 	{
 		bus = FMLJavaModLoadingContext.get().getModEventBus();
-		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, NDIUConfig.SPEC);
+		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
@@ -31,9 +31,7 @@ public class NDIUMod
 	public void onServerStarting(ServerStartingEvent event)
 	{
 		LOGGER.info("ndiupdated: Serverside operations started.");
-		NDIUConfig.cacheValues();
-		bus.register(new NDIUConfig());
+		Config.cacheValues();
+		bus.register(new Config());
 	}
-
-
 }
