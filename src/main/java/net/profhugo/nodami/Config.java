@@ -1,8 +1,8 @@
 package net.profhugo.nodami;
 
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.event.config.ModConfigEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.event.config.ModConfigEvent;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -10,14 +10,14 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class Config {
-	private static final ForgeConfigSpec.Builder BUILDER;
+	private static final ModConfigSpec.Builder BUILDER;
 	public static final Core CORE;
 	public static final Thresholds THRESHOLDS;
 	public static final Exclusions EXCLUSIONS;
-	public static final ForgeConfigSpec SPEC;
+	public static final ModConfigSpec SPEC;
 
 	static {
-		BUILDER = new ForgeConfigSpec.Builder();
+		BUILDER = new ModConfigSpec.Builder();
 		CORE = new Core(BUILDER);
 		THRESHOLDS = new Thresholds(BUILDER);
 		EXCLUSIONS = new Exclusions(BUILDER);
@@ -25,12 +25,12 @@ public class Config {
 	}
 
 	public static class Core {
-		public final ForgeConfigSpec.IntValue iFrameIntervalTemp;
-		public final ForgeConfigSpec.BooleanValue excludePlayersTemp, excludeAllMobsTemp;
+		public final ModConfigSpec.IntValue iFrameIntervalTemp;
+		public final ModConfigSpec.BooleanValue excludePlayersTemp, excludeAllMobsTemp;
 		public int iFrameInterval;
 		public boolean excludePlayers, excludeAllMobs;
 
-		Core(ForgeConfigSpec.Builder builder) {
+		Core(ModConfigSpec.Builder builder) {
 			builder.comment("Core functionality settings").push("core");
 
 			iFrameIntervalTemp = builder.comment(
@@ -48,9 +48,9 @@ public class Config {
 	}
 
 	public static class Thresholds {
-		public final ForgeConfigSpec.DoubleValue attackCancelThresholdTemp, knockbackCancelThresholdTemp;
+		public final ModConfigSpec.DoubleValue attackCancelThresholdTemp, knockbackCancelThresholdTemp;
 		public double attackCancelThreshold, knockbackCancelThreshold;
-		public Thresholds(ForgeConfigSpec.Builder builder) {
+		public Thresholds(ModConfigSpec.Builder builder) {
 			builder.comment("Threshold values for certain features").push("threshold");
 
 			attackCancelThresholdTemp = builder.comment(
@@ -65,12 +65,12 @@ public class Config {
 	}
 
 	public static class Exclusions {
-		public final ForgeConfigSpec.ConfigValue<List<? extends String>> attackExcludedEntitiesTemp, dmgReceiveExcludedEntitiesTemp,
+		public final ModConfigSpec.ConfigValue<List<? extends String>> attackExcludedEntitiesTemp, dmgReceiveExcludedEntitiesTemp,
 				damageSrcWhitelistTemp;
 
 		public HashSet<String> attackExcludedEntities, dmgReceiveExcludedEntities, damageSrcWhitelist;
 
-		public Exclusions(ForgeConfigSpec.Builder builder) {
+		public Exclusions(ModConfigSpec.Builder builder) {
 			List<String> AtkExcEnt = Arrays.asList("minecraft:slime", "minecraft:magma_cube", "tconstruct:earth_slime", "tconstruct:sky_slime", "tconstruct:ender_slime", "tconstruct:terracube", "twilightforest:maze_slime");
 			List<String> DmgRecExcEnt = List.of();
 			List<String> DmgSrcWhtLst = Arrays.asList("inFire", "lava", "sweetBerryBush", "cactus", "lightningBolt", "inWall", "hotFloor", "outOfWorld");

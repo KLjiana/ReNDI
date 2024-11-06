@@ -1,13 +1,14 @@
 package net.profhugo.nodami;
 
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.event.server.ServerStartingEvent;
-import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModLoadingContext;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
+import net.neoforged.fml.javafmlmod.FMLModContainer;
+import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -20,11 +21,11 @@ public class ReNDI
 
 	public static IEventBus bus;
 
-	public ReNDI()
+	public ReNDI(IEventBus modEventBus, ModContainer modContainer)
 	{
-		bus = FMLJavaModLoadingContext.get().getModEventBus();
-		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
-		MinecraftForge.EVENT_BUS.register(this);
+		bus = modEventBus;
+		modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+		NeoForge.EVENT_BUS.register(this);
 	}
 
 	@SubscribeEvent
