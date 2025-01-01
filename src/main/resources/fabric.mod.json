@@ -27,9 +27,9 @@
     "rendi.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.16",
+    "fabricloader": "*",
     "fabric": "*",
-    "cloth-config": ">=11",
+    "cloth-config": "*",
     "minecraft": "*"
   }
 }
