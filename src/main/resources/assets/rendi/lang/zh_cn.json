@@ -1,0 +1,21 @@
+{
+  "text.autoconfig.rendi.option.iFrameInterval": "I-Frame Interval",
+  "text.autoconfig.rendi.option.iFrameInterval.@Tooltip": "How many ticks of i-frames does an entity get when damaged, from 0 (default), to 2^31-1 (nothing can take damage)",
+  "text.autoconfig.rendi.option.excludePlayers": "Exclude Players",
+  "text.autoconfig.rendi.option.excludePlayers.@Tooltip": "Are players excluded from this mod (if true, players will always get 10 ticks of i-frames on being damaged",
+  "text.autoconfig.rendi.option.excludeAllMobs": "Exclude All Mobs",
+  "text.autoconfig.rendi.option.excludeAllMobs.@Tooltip": "Are mobs excluded from this mod (if true, mobs will always get 10 ticks of i-frames on being damaged",
+  "text.autoconfig.rendi.option.attackCancelThreshold": "Attack Cancel Threshold",
+  "text.autoconfig.rendi.option.attackCancelThreshold.@Tooltip": "How weak a player's attack can be before it gets nullified, from 0 (0%, cancels multiple attacks on the same tick) to 1 (100%, players cannot attack), or -0.1 (disables this feature)",
+  "text.autoconfig.rendi.option.knockbackCancelThreshold": "Knockback Cancel Threshold",
+  "text.autoconfig.rendi.option.knockbackCancelThreshold.@Tooltip": "How weak a player's attack can be before the knockback gets nullified, from 0 (0%, cancels multiple attacks on the same tick) to 1 (100%, no knockback), or -0.1 (disables this feature)",
+  "text.autoconfig.rendi.option.attackExcludedEntities": "Attack Excluded Entities",
+  "text.autoconfig.rendi.option.attackExcludedEntities.@Tooltip": "List of entities that need to give i-frames on attacking",
+  "text.autoconfig.rendi.option.dmgReceiveExcludedEntities": "Dmg Receive Excluded Entities",
+  "text.autoconfig.rendi.option.dmgReceiveExcludedEntities.@Tooltip": "List of entities that need to receive i-frames on receiving attacks or relies on i-frames",
+  "text.autoconfig.rendi.option.damageSrcWhitelist": "Damage Src Whitelist",
+  "text.autoconfig.rendi.option.damageSrcWhitelist.@Tooltip": "List of damage sources that need to give i-frames on doing damage (ex: lava)",
+  "text.autoconfig.rendi.category.core": "Core",
+  "text.autoconfig.rendi.category.thresholds": "Thresholds",
+  "text.autoconfig.rendi.category.exclusions": "Exclusions"
+}

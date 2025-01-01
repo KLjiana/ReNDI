@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "rendi",
+  "version": "1.0",
+  "name": "ReNDI",
+  "description": "",
+  "authors": [
+    "Kaleb Langley"
+  ],
+  "contact": {
+    "repo": "https://github.com/kljiana/example-fabric"
+  },
+  "license": "MIT",
+  "icon": "assets/rendi/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+    ],
+    "main": [
+      "net.profhugo.nodami.ReNDI"
+    ],
+    "modmenu": [
+      "net.profhugo.nodami.config.modmenu.ModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "example-fabric.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16",
+    "fabric": "*",
+    "cloth-config": ">=11",
+    "minecraft": "*"
+  }
+}
