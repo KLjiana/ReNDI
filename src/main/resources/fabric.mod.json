@@ -24,7 +24,7 @@
     ]
   },
   "mixins": [
-    "example-fabric.mixins.json"
+    "rendi.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.16",
