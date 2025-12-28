@@ -18,7 +18,7 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber
 public class Handler {
 
-	@SubscribeEvent(priority = EventPriority.LOW)
+	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public static void onEntityHurt(LivingHurtEvent event) {
 		if (!event.isCanceled()) {
 			LivingEntity entity = event.getEntity();
