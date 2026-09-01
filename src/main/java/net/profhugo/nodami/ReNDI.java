@@ -24,6 +24,7 @@ public class ReNDI
 	{
 		bus = FMLJavaModLoadingContext.get().getModEventBus();
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+		bus.register(new Config());
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
@@ -32,6 +33,5 @@ public class ReNDI
 	{
 		LOGGER.info("ndiupdated: Serverside operations started.");
 		Config.cacheValues();
-		bus.register(new Config());
 	}
 }

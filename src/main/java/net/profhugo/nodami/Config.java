@@ -14,6 +14,7 @@ public class Config {
 	public static final Core CORE;
 	public static final Thresholds THRESHOLDS;
 	public static final Exclusions EXCLUSIONS;
+	public static final Debug DEBUG;
 	public static final ForgeConfigSpec SPEC;
 
 	static {
@@ -21,7 +22,22 @@ public class Config {
 		CORE = new Core(BUILDER);
 		THRESHOLDS = new Thresholds(BUILDER);
 		EXCLUSIONS = new Exclusions(BUILDER);
+		DEBUG = new Debug(BUILDER);
 		SPEC = BUILDER.build();
+	}
+
+	public static class Debug {
+		public final ForgeConfigSpec.BooleanValue damageSourcesToChatValue;
+		public volatile boolean damageSourcesToChat;
+
+		Debug(ForgeConfigSpec.Builder builder) {
+			builder.comment("Debug information for identifying damage sources").push("debug");
+			damageSourcesToChatValue = builder.comment(
+					"Send DamageSource.getMsgId() for each server-side damage event to online players' chat.",
+					"Includes excluded damage sources, so the displayed value can be copied into damageSrcWhitelist.")
+					.define("damageSourcesToChat", false);
+			builder.pop();
+		}
 	}
 
 	public static class Core {
@@ -106,24 +122,14 @@ public class Config {
 		EXCLUSIONS.attackExcludedEntities = new HashSet<>(EXCLUSIONS.attackExcludedEntitiesTemp.get());
 		EXCLUSIONS.dmgReceiveExcludedEntities = new HashSet<>(EXCLUSIONS.dmgReceiveExcludedEntitiesTemp.get());
 		EXCLUSIONS.damageSrcWhitelist = new HashSet<>(EXCLUSIONS.damageSrcWhitelistTemp.get());
+		DEBUG.damageSourcesToChat = DEBUG.damageSourcesToChatValue.get();
 	}
 
 	@SubscribeEvent
 	public void onModConfigEvent(final ModConfigEvent configEvent) {
-		if (configEvent.getConfig().getSpec() == Config.SPEC) {
+		if (configEvent.getConfig().getSpec() == Config.SPEC
+				&& (configEvent instanceof ModConfigEvent.Loading || configEvent instanceof ModConfigEvent.Reloading)) {
 			Config.cacheValues();
 		}
-	}
-
-	@SubscribeEvent
-	public void onLoad(final ModConfigEvent.Loading event) {
-		ReNDI.LOGGER.info("Config loaded!");
-		Config.cacheValues();
-	}
-
-	@SubscribeEvent
-	public void onReload(final ModConfigEvent.Reloading event) {
-		ReNDI.LOGGER.info("Config reloaded!");
-		Config.cacheValues();
 	}
 }
