@@ -15,7 +15,10 @@
   "text.autoconfig.rendi.option.dmgReceiveExcludedEntities.@Tooltip": "需要在接收伤害时触发无敌帧或依赖无敌帧的实体列表",
   "text.autoconfig.rendi.option.damageSrcWhitelist": "伤害来源白名单",
   "text.autoconfig.rendi.option.damageSrcWhitelist.@Tooltip": "需要在造成伤害时触发无敌帧的伤害来源列表（例如：熔岩）",
+  "text.autoconfig.rendi.option.damageSourcesToChat": "在聊天栏显示伤害来源 ID",
+  "text.autoconfig.rendi.option.damageSourcesToChat.@Tooltip": "将服务端伤害的 DamageSource.getMsgId() 发送给所有在线玩家",
   "text.autoconfig.rendi.category.core": "核心",
   "text.autoconfig.rendi.category.thresholds": "阈值",
-  "text.autoconfig.rendi.category.exclusions": "排除项"
+  "text.autoconfig.rendi.category.exclusions": "排除项",
+  "text.autoconfig.rendi.category.debug": "调试"
 }

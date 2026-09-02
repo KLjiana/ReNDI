@@ -15,7 +15,10 @@
   "text.autoconfig.rendi.option.dmgReceiveExcludedEntities.@Tooltip": "List of entities that need to receive i-frames on receiving attacks or relies on i-frames",
   "text.autoconfig.rendi.option.damageSrcWhitelist": "Damage Src Whitelist",
   "text.autoconfig.rendi.option.damageSrcWhitelist.@Tooltip": "List of damage sources that need to give i-frames on doing damage (ex: lava)",
+  "text.autoconfig.rendi.option.damageSourcesToChat": "Show Damage Source IDs in Chat",
+  "text.autoconfig.rendi.option.damageSourcesToChat.@Tooltip": "Send DamageSource.getMsgId() for server-side damage to every online player's chat",
   "text.autoconfig.rendi.category.core": "Core",
   "text.autoconfig.rendi.category.thresholds": "Thresholds",
-  "text.autoconfig.rendi.category.exclusions": "Exclusions"
+  "text.autoconfig.rendi.category.exclusions": "Exclusions",
+  "text.autoconfig.rendi.category.debug": "Debug"
 }

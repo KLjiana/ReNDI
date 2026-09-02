@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "rendi",
-  "version": "1.0",
+  "version": "${version}",
   "name": "ReNDI",
   "description": "",
   "authors": [

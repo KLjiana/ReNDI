@@ -38,6 +38,10 @@ public class ModConfig implements ConfigData {
     @ConfigEntry.Gui.Tooltip
     public List<String> damageSrcWhitelist = Arrays.asList("inFire", "lava", "sweetBerryBush", "cactus", "lightningBolt", "inWall", "hotFloor", "outOfWorld");
 
+    @ConfigEntry.Category("debug")
+    @ConfigEntry.Gui.Tooltip
+    public boolean damageSourcesToChat = false;
+
     public static Screen getConfigScreen(Screen parent){
         return AutoConfig.getConfigScreen(ModConfig.class, parent).get();
     }
