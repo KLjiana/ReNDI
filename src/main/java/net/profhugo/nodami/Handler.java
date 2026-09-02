@@ -1,5 +1,6 @@
 package net.profhugo.nodami;
 
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -27,6 +28,11 @@ public class Handler {
 				return;
 			}
 			DamageSource source = event.getSource();
+			if (Config.DEBUG.damageSourcesToChat && entity.getServer() != null) {
+				Component message = Component.literal("[ReNDI] DamageSource.msgId = " + source.getMsgId());
+				entity.getServer().getPlayerList().getPlayers()
+						.forEach(player -> player.sendSystemMessage(message));
+			}
 			Entity trueSource = source.getDirectEntity();
 			ResourceLocation trueSourceloc = trueSource != null ? EntityType.getKey(trueSource.getType()) : null;
 			if (Config.CORE.excludePlayers && entity instanceof Player) {

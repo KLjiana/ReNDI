@@ -25,6 +25,7 @@ public class ReNDI
 	{
 		bus = modEventBus;
 		modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+		bus.register(new Config());
 		NeoForge.EVENT_BUS.register(this);
 	}
 
@@ -33,6 +34,5 @@ public class ReNDI
 	{
 		LOGGER.info("ndiupdated: Serverside operations started.");
 		Config.cacheValues();
-		bus.register(new Config());
 	}
 }
